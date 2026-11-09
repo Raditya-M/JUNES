@@ -1,13 +1,3 @@
-{{--
-    File         : pesan.blade.php
-    Deskripsi    : Halaman form pemesanan kamar dengan tampilan card elegan
-                   dua kolom (form + ringkasan biaya), validasi client-side JS
-                   dan kalkulasi total bayar interaktif.
-    Initial State: Form kosong, belum ada data yang diisi
-    Final State  : Data pemesanan tervalidasi dan terkirim ke server via POST
-    Author       : Junior Web Developer
-    Versi/Tanggal: v2.0 / 2026-09-15
---}}
 @extends('layouts.app')
 
 @section('title', 'Pesan Kamar')
@@ -71,11 +61,11 @@
                     {{-- NOMOR IDENTITAS --}}
                     <div>
                         <label class="block text-xs uppercase tracking-wide text-gray-500 font-medium mb-2">Nomor Identitas (KTP)</label>
-                        <input type="text" name="nomor_identitas" id="nomor_identitas" maxlength="16"
+                        <input type="text" name="nomor_identitas" id="nomor_identitas" minlength="16" maxlength="16"
                                value="{{ old('nomor_identitas') }}" required placeholder="16 digit angka"
                                oninput="cekNomorIdentitas()"
                                class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent">
-                        <p id="errorIdentitas" class="text-red-600 text-xs mt-1 hidden">isian salah..data harus 16 digit</p>
+                        <p id="errorIdentitas" class="text-red-600 text-xs mt-1 hidden">Nomor identitas harus persis 16 digit angka!</p>
                     </div>
 
                     {{-- TIPE KAMAR --}}
@@ -121,7 +111,7 @@
                         <input type="checkbox" name="termasuk_breakfast" id="termasuk_breakfast" value="1"
                                class="w-4 h-4 accent-sky-600"
                                {{ old('termasuk_breakfast') ? 'checked' : '' }}>
-                        <label for="termasuk_breakfast" class="text-sm text-slate-700">🍳 Termasuk Sarapan Pagi <span class="text-gray-400">(+Rp 80.000)</span></label>
+                        <label for="termasuk_breakfast" class="text-sm text-slate-700">🍳 Termasuk Sarapan Pagi <span class="text-gray-400">(+Rp 80.000 / malam)</span></label>
                     </div>
                 </div>
 
@@ -196,12 +186,18 @@
 
     /**
      * Fungsi: cekNomorIdentitas
-     * Deskripsi: Validasi client-side nomor identitas harus 16 digit angka.
+     * Deskripsi: Validasi client-side nomor identitas harus tepat 16 digit angka (tidak boleh kurang/lebih & non-angka).
      */
     function cekNomorIdentitas() {
         const input = document.getElementById('nomor_identitas');
+        
+        // Hapus karakter non-angka secara otomatis jika user mengetik huruf/simbol
+        input.value = input.value.replace(/[^0-9]/g, '');
+
         const errorEl = document.getElementById('errorIdentitas');
+        // Validasi regex: persis 16 digit angka
         const valid = /^[0-9]{16}$/.test(input.value);
+
         errorEl.classList.toggle('hidden', valid || input.value.length === 0);
         return valid;
     }
@@ -247,7 +243,7 @@
         const totalDasar = harga * durasi;
         const discountPersen = durasi > 3 ? 10 : 0;
         const nilaiDiscount = totalDasar * (discountPersen / 100);
-        const tambahanBreakfast = breakfast ? 80000 : 0;
+        const tambahanBreakfast = breakfast ? (80000 * durasi) : 0;
         const totalBayar = (totalDasar - nilaiDiscount) + tambahanBreakfast;
 
         // Isi hasil kalkulasi utama
@@ -256,7 +252,9 @@
         // Isi panel ringkasan biaya di kolom kanan
         document.getElementById('ringkasan_tipe').textContent = tipe + ' (' + formatRupiah(harga) + '/malam)';
         document.getElementById('ringkasan_durasi').textContent = durasi + ' malam';
-        document.getElementById('ringkasan_breakfast').textContent = breakfast ? '+ ' + formatRupiah(80000) : 'Tidak ada';
+        document.getElementById('ringkasan_breakfast').textContent = breakfast 
+            ? '+ ' + formatRupiah(tambahanBreakfast) + ' (' + durasi + ' malam)' 
+            : 'Tidak ada';
         document.getElementById('ringkasan_diskon').textContent = discountPersen > 0
             ? '- ' + formatRupiah(nilaiDiscount) + ' (10%)'
             : 'Tidak ada';
@@ -279,7 +277,7 @@
         const durasiValid = cekDurasi();
 
         if (!identitasValid) {
-            alert('Nomor identitas harus 16 digit angka.');
+            alert('Nomor identitas harus berupa 16 digit angka.');
             return false;
         }
         if (!durasiValid) {
@@ -289,10 +287,6 @@
         return true;
     }
 
-    /**
-     * Fungsi: resetTampilan
-     * Deskripsi: Membersihkan tampilan harga & ringkasan biaya saat tombol Cancel diklik.
-     */
     function resetTampilan() {
         document.getElementById('harga_tampil').value = '';
         document.getElementById('total_bayar_tampil').value = '';

@@ -1,9 +1,3 @@
-{{--
-    File         : app.blade.php
-    Deskripsi    : Layout utama aplikasi dengan penambahan smooth scroll dan pendeteksi scroll navbar.
-    Author       : Junior Web Developer
-    Versi/Tanggal: v2.1 / 2026-09-15
---}}
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth scroll-pt-24">
 <head>

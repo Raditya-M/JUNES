@@ -1,14 +1,4 @@
 <?php
-/**
- * File         : Pemesanan.php
- * Deskripsi    : Model untuk merepresentasikan data pemesanan kamar hotel.
- *                Berelasi langsung dengan tabel pemesanan_kamars.
- * Initial State: Data pemesanan belum tersedia sebagai objek PHP
- * Final State  : Data pemesanan dapat diakses, disimpan, dan dimanipulasi
- *                melalui Eloquent ORM
- * Author       : Junior Web Developer
- * Versi/Tanggal: v1.0 / 2026-09-15
- */
 
 namespace App\Models;
 

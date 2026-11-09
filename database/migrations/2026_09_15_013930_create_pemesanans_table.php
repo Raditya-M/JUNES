@@ -1,13 +1,4 @@
 <?php
-/**
- * File         : 2024_01_01_000000_create_pemesanan_kamars_table.php
- * Deskripsi    : Migration untuk membuat tabel pemesanan_kamars
- *                yang menyimpan data transaksi pemesanan kamar hotel.
- * Initial State: Tabel belum ada di database
- * Final State  : Tabel pemesanan_kamars tersedia dengan seluruh kolom yang dibutuhkan
- * Author       : Junior Web Developer
- * Versi/Tanggal: v1.0 / 2026-09-15
- */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

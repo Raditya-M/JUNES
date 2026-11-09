@@ -39,38 +39,46 @@
         {{-- ===== SEARCH BAR OVERLAY (mengambang di bawah hero) ===== --}}
         <div class="absolute bottom-0 left-0 w-full z-20">
             <form action="{{ route('pesanan.create') }}" method="GET"
-                  class="max-w-7xl mx-auto flex flex-col md:flex-row bg-slate-900/95 text-white">
+                class="max-w-7xl mx-auto flex flex-col md:flex-row bg-slate-900/95 text-white">
 
+                {{-- Check-in --}}
                 <div class="flex-1 px-6 py-5 border-b md:border-b-0 md:border-r border-white/20">
                     <label class="block text-xs uppercase tracking-wide text-white/60 mb-1">Check-in</label>
-                    <input type="date" class="bg-transparent outline-none text-sm w-full placeholder-white/50">
+                    <input type="date" name="tanggal_pesan" id="search_checkin" required
+                        value="{{ request('tanggal_pesan', date('Y-m-d')) }}"
+                        class="bg-transparent outline-none text-sm w-full placeholder-white/50 text-white cursor-pointer">
                 </div>
 
+                {{-- Check-out --}}
                 <div class="flex-1 px-6 py-5 border-b md:border-b-0 md:border-r border-white/20">
                     <label class="block text-xs uppercase tracking-wide text-white/60 mb-1">Check-out</label>
-                    <input type="date" class="bg-transparent outline-none text-sm w-full placeholder-white/50">
+                    <input type="date" name="tanggal_checkout" id="search_checkout" required
+                        value="{{ request('tanggal_checkout') }}"
+                        class="bg-transparent outline-none text-sm w-full placeholder-white/50 text-white cursor-pointer">
                 </div>
 
+                {{-- Dewasa --}}
                 <div class="flex-1 px-6 py-5 border-b md:border-b-0 md:border-r border-white/20">
                     <label class="block text-xs uppercase tracking-wide text-white/60 mb-1">Dewasa</label>
-                    <select class="bg-transparent outline-none text-sm w-full text-white">
-                        <option class="text-slate-900">1</option>
-                        <option class="text-slate-900">2</option>
-                        <option class="text-slate-900">3</option>
+                    <select name="dewasa" class="bg-transparent outline-none text-sm w-full text-white cursor-pointer">
+                        <option value="1" {{ request('dewasa') == 1 ? 'selected' : '' }} class="text-slate-900">1 Orang</option>
+                        <option value="2" {{ request('dewasa') == 2 ? 'selected' : '' }} class="text-slate-900">2 Orang</option>
+                        <option value="3" {{ request('dewasa') == 3 ? 'selected' : '' }} class="text-slate-900">3 Orang</option>
                     </select>
                 </div>
 
+                {{-- Anak --}}
                 <div class="flex-1 px-6 py-5 border-b md:border-b-0 md:border-r border-white/20">
                     <label class="block text-xs uppercase tracking-wide text-white/60 mb-1">Anak</label>
-                    <select class="bg-transparent outline-none text-sm w-full text-white">
-                        <option class="text-slate-900">0</option>
-                        <option class="text-slate-900">1</option>
-                        <option class="text-slate-900">2</option>
+                    <select name="anak" class="bg-transparent outline-none text-sm w-full text-white cursor-pointer">
+                        <option value="0" {{ request('anak') == 0 ? 'selected' : '' }} class="text-slate-900">0 Anak</option>
+                        <option value="1" {{ request('anak') == 1 ? 'selected' : '' }} class="text-slate-900">1 Anak</option>
+                        <option value="2" {{ request('anak') == 2 ? 'selected' : '' }} class="text-slate-900">2 Anak</option>
                     </select>
                 </div>
 
                 <button type="submit"
-                        class="bg-sky-500 hover:bg-sky-600 transition text-white uppercase text-sm tracking-widest px-10 py-5 font-medium">
+                        class="bg-sky-500 hover:bg-sky-600 transition text-white uppercase text-sm tracking-widest px-10 py-5 font-medium flex items-center justify-center">
                     Cari Kamar
                 </button>
             </form>
@@ -272,7 +280,7 @@
             {{-- Kolom video --}}
             <div class="aspect-video">
                 <iframe class="w-full h-full"
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        src="https://www.youtube.com/embed/n6ri-KvuwIo"
                         title="Video Tour JUNES" allowfullscreen></iframe>
             </div>
         </div>

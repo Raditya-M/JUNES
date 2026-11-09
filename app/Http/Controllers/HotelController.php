@@ -1,15 +1,4 @@
 <?php
-/**
- * File         : HotelController.php
- * Deskripsi    : Controller utama aplikasi pemesanan kamar hotel.
- *                Menangani tampilan halaman (produk, harga, tentang kami),
- *                proses simpan pemesanan (store), dan tampilan detail pesanan (show).
- * Initial State: Belum ada request yang diproses
- * Final State  : Data pemesanan tervalidasi dan tersimpan di database,
- *                serta dapat ditampilkan kembali ke pengguna
- * Author       : Junior Web Developer
- * Versi/Tanggal: v1.0 / 2026-09-15
- */
 
 namespace App\Http\Controllers;
 
