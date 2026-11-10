@@ -23,6 +23,7 @@
                 <span class="text-xl tracking-wide font-serif-elegant">JUNES</span>
             </a>
             <div class="hidden md:flex items-center space-x-8 text-sm uppercase tracking-wide">
+                <a href="{{ route('home') }}" class="hover:text-blue-300 transition">Produk</a>
                 <a href="{{ route('home') }}#tentang" class="hover:text-blue-300 transition">Tentang Kami</a>
                 <a href="{{ route('home') }}#produk" class="hover:text-blue-300 transition">Kamar & Harga</a>
                 <a href="{{ route('pesanan.create') }}"

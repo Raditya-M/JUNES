@@ -55,7 +55,6 @@
         </div>
 
         <style>
-            /* Teks naik dari balik masker */
             .hero-mask { overflow: hidden; padding-bottom: .15em; }
             .hero-rise {
                 display: inline-block;
@@ -65,7 +64,6 @@
             }
             @keyframes heroRise { to { transform: translateY(0); opacity: 1; } }
 
-            /* Fade + naik halus untuk elemen lain */
             .hero-fade {
                 opacity: 0;
                 transform: translateY(16px);
@@ -73,7 +71,6 @@
             }
             @keyframes heroFade { to { opacity: 1; transform: none; } }
 
-            /* Garis eyebrow memanjang */
             .hero-line {
                 display: block;
                 height: 1px;
@@ -83,10 +80,10 @@
             }
             @keyframes heroLine { to { width: 3.5rem; } }
 
-            /* Kilau emas berjalan di "Sugeng Rawuh" */
             .hero-shimmer {
                 display: inline-block;
-                padding-right: .12em; /* supaya ujung huruf miring tidak terpotong */
+                padding-right: .12em;
+                padding-bottom: .12em;
                 background: linear-gradient(90deg, #fde68a, #ffffff, #fbbf24, #ffffff, #fde68a);
                 background-size: 200% auto;
                 -webkit-background-clip: text;
@@ -160,8 +157,8 @@
             <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=500&q=80"
                  class="absolute bottom-0 right-0 w-3/5 h-64 object-cover rounded shadow-lg border-4 border-white" alt="Pemandangan hotel">
             <div class="absolute bottom-6 left-0 bg-amber-500 text-white rounded-2xl shadow-lg p-5 w-40 text-center">
-                <p class="text-3xl font-serif-elegant">1</p>
-                <p class="text-xs uppercase tracking-widest mt-1">Hari Melayani Tamu</p>
+                <p class="text-3xl font-serif-elegant">16</p>
+                <p class="text-xs uppercase tracking-widest mt-1">Tahun Melayani Tamu</p>
             </div>
         </div>
 
@@ -188,7 +185,7 @@
                     </div>
                     <div>
                         <p class="font-semibold text-sm text-slate-800">Alamat</p>
-                        <p class="text-sm text-gray-500">Jl. Raya Pajajaran No. 88, Bogor, Jawa Barat, Indonesia</p>
+                        <p class="text-sm text-gray-500">10 Bayfront Avenue, Singapura 018956 (Marina Bay).</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4 bg-white rounded-lg shadow-sm p-4">
@@ -197,7 +194,7 @@
                     </div>
                     <div>
                         <p class="font-semibold text-sm text-slate-800">Telepon</p>
-                        <p class="text-sm text-gray-500">+34-666-9990023</p>
+                        <p class="text-sm text-gray-500">+65 6688 8868</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4 bg-white rounded-lg shadow-sm p-4">
@@ -235,15 +232,15 @@
             </p>
             <div class="grid grid-cols-2 gap-y-3 text-sm">
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sky-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2 1m0 0L10 4m2 1v2.5M4 7l2-1m-2 1l2 1m-2-1v2.5M7 15l-2 1m2-1l-2-1m2 1v2.5M20 15l-2 1m2-1l-2-1m2 1v2.5M17 21l-2 1m2-1l-2-1m2 1v2.5M11 21l-2 1m2-1l-2-1m2 1v2.5"/></svg>
+                    <svg class="w-5 h-5 text-sky-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 6a2 2 0 100-4 2 2 0 000 4zm-7.5 4.5L12 8l4.5 2.5M2 17c2.5 0 3.5-2 6-2s3.5 2 6 2 3.5-2 6-2M2 21c2.5 0 3.5-2 6-2s3.5 2 6 2 3.5-2 6-2"/></svg>
                     <span>Kolam Renang</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sky-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3.75 13.5l10.5-10.5m0 0h-6.75m6.75 0v6.75M20.25 10.5L9.75 21m0 0h6.75M9.75 21v-6.75"/></svg>
+                    <svg class="w-5 h-5 text-sky-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6.5 6.5h-1a2 2 0 00-2 2v7a2 2 0 002 2h1m11-11h1a2 2 0 012 2v7a2 2 0 01-2 2h-1M6.5 5v14M17.5 5v14M9.5 9v6M14.5 9v6M9.5 12h5"/></svg>
                     <span>Gym & Yoga</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sky-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 21a9 9 0 100-18 9 9 0 000 18zM12 8v4l3 3"/></svg>
+                    <svg class="w-5 h-5 text-sky-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2c-.8 1.2-1.5 2.5-1.5 3.5A1.5 1.5 0 0012 7a1.5 1.5 0 001.5-1.5C13.5 4.5 12.8 3.2 12 2zM7 10h10v11H7V10z"/></svg>
                     <span>Spa & Pijat</span>
                 </div>
                 <div class="flex items-center gap-2">
@@ -259,7 +256,7 @@
                     <span>Ruang Konferensi</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sky-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg>
+                    <svg class="w-5 h-5 text-sky-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M2 20c4-4 8-1 12-4s4-8 8-8c0 5-3 8-7 10s-7 1-13 2z"/></svg>
                     <span>Diving & Snorkeling</span>
                 </div>
                 <div class="flex items-center gap-2">
@@ -276,18 +273,19 @@
     <section id="produk" class="max-w-7xl mx-auto px-6 py-20">
         <div class="text-center mb-12">
             <p class="text-sky-600 text-xs uppercase tracking-widest font-semibold mb-2">Pilihan Menginap</p>
-            <h2 class="font-serif-elegant text-3xl md:text-4xl text-slate-800">Kamar & Suite</h2>
+            <h2 class="font-serif-elegant text-3xl md:text-4xl text-slate-800">Kamar & Harga</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             {{-- Kamar Standar --}}
-            <div class="bg-white rounded-lg shadow-md overflow-hidden group">
-                <div class="overflow-hidden">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden group flex flex-col">
+                <button type="button" onclick="openRoom('standar')" class="text-left overflow-hidden relative block" aria-label="Lihat detail Kamar Standar">
                     <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80"
-                         alt="Kamar Standar" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="p-6">
+                        alt="Kamar Standar" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
+                </button>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="text-amber-400 text-sm mb-1" aria-label="1 dari 3 bintang">★<span class="text-gray-300">★★</span></div>
                     <h3 class="font-serif-elegant text-xl mb-2">Kamar Standar</h3>
                     <p class="text-sm text-gray-600 mb-3">Kamar nyaman dengan fasilitas dasar, cocok untuk perjalanan singkat.</p>
                     <ul class="text-xs text-gray-500 space-y-1 mb-4">
@@ -295,17 +293,22 @@
                         <li>• AC & TV</li>
                         <li>• Kamar mandi dalam</li>
                     </ul>
-                    <p class="font-semibold text-sky-700">Rp 500.000 <span class="text-gray-400 font-normal">/ malam</span></p>
+                    <p class="font-semibold text-sky-700 mb-4">Rp 500.000 <span class="text-gray-400 font-normal">/ malam</span></p>
+                    <button type="button" onclick="openRoom('standar')"
+                            class="mt-auto w-full border border-sky-600 text-sky-700 hover:bg-sky-600 hover:text-white transition text-xs uppercase tracking-widest py-3 rounded-full">
+                        Lihat Detail Kamar
+                    </button>
                 </div>
             </div>
 
             {{-- Kamar Deluxe --}}
-            <div class="bg-white rounded-lg shadow-md overflow-hidden group">
-                <div class="overflow-hidden">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden group flex flex-col">
+                <button type="button" onclick="openRoom('deluxe')" class="text-left overflow-hidden relative block" aria-label="Lihat detail Kamar Deluxe">
                     <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80"
-                         alt="Kamar Deluxe" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="p-6">
+                        alt="Kamar Deluxe" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
+                </button>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="text-amber-400 text-sm mb-1" aria-label="2 dari 3 bintang">★★<span class="text-gray-300">★</span></div>
                     <h3 class="font-serif-elegant text-xl mb-2">Kamar Deluxe</h3>
                     <p class="text-sm text-gray-600 mb-3">Kamar lebih luas dengan pemandangan kota dan fasilitas tambahan.</p>
                     <ul class="text-xs text-gray-500 space-y-1 mb-4">
@@ -313,17 +316,22 @@
                         <li>• AC, TV, Minibar</li>
                         <li>• Balkon pribadi</li>
                     </ul>
-                    <p class="font-semibold text-sky-700">Rp 800.000 <span class="text-gray-400 font-normal">/ malam</span></p>
+                    <p class="font-semibold text-sky-700 mb-4">Rp 800.000 <span class="text-gray-400 font-normal">/ malam</span></p>
+                    <button type="button" onclick="openRoom('deluxe')"
+                            class="mt-auto w-full border border-sky-600 text-sky-700 hover:bg-sky-600 hover:text-white transition text-xs uppercase tracking-widest py-3 rounded-full">
+                        Lihat Detail Kamar
+                    </button>
                 </div>
             </div>
 
             {{-- Kamar Executive --}}
-            <div class="bg-white rounded-lg shadow-md overflow-hidden group">
-                <div class="overflow-hidden">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden group flex flex-col">
+                <button type="button" onclick="openRoom('executive')" class="text-left overflow-hidden relative block" aria-label="Lihat detail Kamar Executive">
                     <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80"
-                         alt="Kamar Executive" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="p-6">
+                        alt="Kamar Executive" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
+                </button>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="text-amber-400 text-sm mb-1" aria-label="3 dari 3 bintang">★★★</div>
                     <h3 class="font-serif-elegant text-xl mb-2">Kamar Executive</h3>
                     <p class="text-sm text-gray-600 mb-3">Suite mewah dengan ruang tamu terpisah dan layanan premium.</p>
                     <ul class="text-xs text-gray-500 space-y-1 mb-4">
@@ -331,7 +339,11 @@
                         <li>• Bathtub & shower</li>
                         <li>• Akses lounge eksekutif</li>
                     </ul>
-                    <p class="font-semibold text-sky-700">Rp 1.200.000 <span class="text-gray-400 font-normal">/ malam</span></p>
+                    <p class="font-semibold text-sky-700 mb-4">Rp 1.200.000 <span class="text-gray-400 font-normal">/ malam</span></p>
+                    <button type="button" onclick="openRoom('executive')"
+                            class="mt-auto w-full border border-sky-600 text-sky-700 hover:bg-sky-600 hover:text-white transition text-xs uppercase tracking-widest py-3 rounded-full">
+                        Lihat Detail Kamar
+                    </button>
                 </div>
             </div>
         </div>
@@ -395,5 +407,180 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
         </svg>
     </a>
+
+
+    {{-- ===== MODAL PREVIEW KAMAR ===== --}}
+    <div id="roomModal" class="fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="rm-name">
+        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" onclick="closeRoom()"></div>
+
+        <div class="relative h-full overflow-y-auto flex items-start md:items-center justify-center p-4">
+            <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-5xl overflow-hidden md:grid md:grid-cols-2 my-4">
+
+                <button type="button" onclick="closeRoom()" aria-label="Tutup"
+                        class="absolute top-3 right-3 z-10 bg-white/90 hover:bg-white text-slate-700 w-9 h-9 rounded-full shadow flex items-center justify-center text-xl leading-none">&times;</button>
+
+                {{-- Galeri --}}
+                <div class="bg-slate-100">
+                    <div class="relative">
+                        <img id="rm-main" src="" alt="" class="w-full h-64 md:h-[420px] object-cover">
+                        <button type="button" onclick="stepRoomImg(-1)" aria-label="Foto sebelumnya"
+                                class="absolute left-3 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white w-9 h-9 rounded-full shadow flex items-center justify-center">‹</button>
+                        <button type="button" onclick="stepRoomImg(1)" aria-label="Foto berikutnya"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white w-9 h-9 rounded-full shadow flex items-center justify-center">›</button>
+                        <span id="rm-badge" class="absolute bottom-3 left-3 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full"></span>
+                    </div>
+                    <div id="rm-thumbs" class="grid grid-cols-4 gap-2 p-3"></div>
+                </div>
+
+                {{-- Detail --}}
+                <div class="p-6 md:p-8 md:max-h-[640px] md:overflow-y-auto">
+                    <div id="rm-stars" class="text-amber-400 text-lg mb-1"></div>
+                    <h3 id="rm-name" class="font-serif-elegant text-3xl text-slate-800 mb-2"></h3>
+                    <p id="rm-desc" class="text-sm text-gray-600 leading-relaxed mb-5"></p>
+
+                    {{-- Spesifikasi singkat --}}
+                    <div id="rm-specs" class="grid grid-cols-2 gap-3 mb-6"></div>
+
+                    {{-- Fasilitas --}}
+                    <p class="text-sky-600 text-xs uppercase tracking-widest font-semibold mb-3">Isi & Fasilitas Kamar</p>
+                    <ul id="rm-features" class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm mb-6"></ul>
+
+                    {{-- Harga + CTA --}}
+                    <div class="flex items-center justify-between gap-4 border-t pt-5">
+                        <div>
+                            <p class="text-xs text-gray-400">Mulai dari</p>
+                            <p class="font-semibold text-2xl text-sky-700"><span id="rm-price"></span> <span class="text-sm text-gray-400 font-normal">/ malam</span></p>
+                        </div>
+                        <a id="rm-book" href="#"
+                        class="bg-amber-500 hover:bg-amber-600 transition text-white text-xs uppercase tracking-widest px-6 py-3 rounded-full whitespace-nowrap">
+                            Pesan Kamar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const U = (id, w = 900) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+
+            // Daftar fasilitas pembanding: tipe yang lebih mahal punya lebih banyak (on = true)
+            const feat = (on) => [
+                ['Wi-Fi gratis',                  on[0]],
+                ['AC',                            on[1]],
+                ['Kamar mandi dalam + shower',    on[2]],
+                ['Perlengkapan mandi (amenities)',on[3]],
+                ['Safe box',                      on[4]],
+                ['Minibar',                       on[5]],
+                ['Mesin kopi & teh',              on[6]],
+                ['Balkon pribadi',                on[7]],
+                ['Bathtub',                       on[8]],
+                ['Ruang tamu terpisah',           on[9]],
+                ['Sarapan untuk 2 orang',         on[10]],
+                ['Akses lounge eksekutif',        on[11]],
+                ['Butler & layanan kamar 24 jam', on[12]],
+                ['Antar-jemput bandara',          on[13]],
+            ];
+
+            const ROOMS = {
+                standar: {
+                    name: 'Kamar Standar', stars: 1, price: 'Rp 500.000', badge: 'Hemat', badgeCls: 'bg-slate-500',
+                    desc: 'Kamar ringkas dan bersih dengan fasilitas dasar yang lengkap — pilihan pas untuk perjalanan singkat atau menginap semalam.',
+                    specs: [['Ukuran', '24 m²'], ['Tempat tidur', '1 Queen'], ['Kapasitas', '2 orang'], ['Pemandangan', 'Halaman hotel']],
+                    tv: 'TV LED 32"',
+                    features: feat([1,1,1,1,0,0,0,0,0,0,0,0,0,0]),
+                    images: [U('photo-1590490360182-c33d57733427'), U('photo-1566073771259-6a8506099945'), U('photo-1520250497591-112f2f40a3f4'), U('photo-1571003123894-1f0594d2b5d9')]
+                },
+                deluxe: {
+                    name: 'Kamar Deluxe', stars: 2, price: 'Rp 800.000', badge: 'Populer', badgeCls: 'bg-sky-600',
+                    desc: 'Kamar lebih luas dengan kasur king, balkon pribadi, dan pemandangan kota. Dilengkapi minibar dan sarapan untuk kenyamanan ekstra.',
+                    specs: [['Ukuran', '36 m²'], ['Tempat tidur', '1 King'], ['Kapasitas', '3 orang'], ['Pemandangan', 'Kota']],
+                    tv: 'Smart TV 43"',
+                    features: feat([1,1,1,1,1,1,1,1,0,0,1,0,0,0]),
+                    images: [U('photo-1611892440504-42a792e24d32'), U('photo-1590490360182-c33d57733427'), U('photo-1566073771259-6a8506099945'), U('photo-1520250497591-112f2f40a3f4')]
+                },
+                executive: {
+                    name: 'Kamar Executive', stars: 3, price: 'Rp 1.200.000', badge: 'Terbaik', badgeCls: 'bg-amber-500',
+                    desc: 'Suite mewah dengan ruang tamu terpisah, bathtub, dan akses lounge eksekutif. Dilayani butler pribadi serta antar-jemput bandara untuk pengalaman menginap kelas atas.',
+                    specs: [['Ukuran', '60 m²'], ['Tempat tidur', '1 King Premium'], ['Kapasitas', '4 orang'], ['Pemandangan', 'Panorama kota']],
+                    tv: 'Smart TV 55" + sound bar',
+                    features: feat([1,1,1,1,1,1,1,1,1,1,1,1,1,1]),
+                    images: [U('photo-1582719508461-905c673771fd'), U('photo-1611892440504-42a792e24d32'), U('photo-1571896349842-33c89424de2d'), U('photo-1566073771259-6a8506099945')]
+                }
+            };
+
+            const CHECK = '<svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+            const CROSS = '<svg class="w-4 h-4 text-gray-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>';
+
+            const el = (id) => document.getElementById(id);
+            let current = null, idx = 0;
+
+            function showImg(i) {
+                const r = ROOMS[current];
+                idx = (i + r.images.length) % r.images.length;
+                const main = el('rm-main');
+                main.src = r.images[idx];
+                main.alt = r.name + ' — foto ' + (idx + 1);
+                el('rm-thumbs').querySelectorAll('button').forEach((b, n) => {
+                    b.classList.toggle('ring-2', n === idx);
+                    b.classList.toggle('ring-sky-500', n === idx);
+                    b.classList.toggle('opacity-60', n !== idx);
+                });
+            }
+
+            window.stepRoomImg = (d) => showImg(idx + d);
+
+            window.openRoom = function (key) {
+                const r = ROOMS[key];
+                if (!r) return;
+                current = key;
+
+                el('rm-name').textContent = r.name;
+                el('rm-desc').textContent = r.desc;
+                el('rm-price').textContent = r.price;
+                el('rm-stars').innerHTML = '★'.repeat(r.stars) + '<span class="text-gray-300">' + '★'.repeat(3 - r.stars) + '</span>';
+
+                const badge = el('rm-badge');
+                badge.textContent = r.badge;
+                badge.className = 'absolute bottom-3 left-3 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full ' + r.badgeCls;
+
+                el('rm-specs').innerHTML = r.specs.map(s =>
+                    `<div class="bg-slate-50 rounded-lg px-4 py-3"><p class="text-[10px] uppercase tracking-widest text-gray-400">${s[0]}</p><p class="text-sm font-semibold text-slate-800">${s[1]}</p></div>`
+                ).join('');
+
+                // TV ditampilkan sebagai fasilitas pertama (ukuran naik sesuai tipe)
+                const rows = [[r.tv, true]].concat(r.features);
+                el('rm-features').innerHTML = rows.map(f =>
+                    `<li class="flex items-center gap-2 ${f[1] ? 'text-slate-700' : 'text-gray-400 line-through'}">${f[1] ? CHECK : CROSS}<span>${f[0]}</span></li>`
+                ).join('');
+
+                el('rm-thumbs').innerHTML = r.images.map((src, n) =>
+                    `<button type="button" onclick="showRoomImg(${n})" class="overflow-hidden rounded-lg"><img src="${src.replace('w=900', 'w=240')}" alt="" class="w-full h-16 object-cover"></button>`
+                ).join('');
+
+                el('rm-book').href = "{{ route('pesanan.create') }}?tipe=" + key;
+
+                showImg(0);
+                el('roomModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            };
+
+            window.showRoomImg = showImg;
+
+            window.closeRoom = function () {
+                el('roomModal').classList.add('hidden');
+                document.body.style.overflow = '';
+            };
+
+            document.addEventListener('keydown', (e) => {
+                if (el('roomModal').classList.contains('hidden')) return;
+                if (e.key === 'Escape') closeRoom();
+                if (e.key === 'ArrowLeft') stepRoomImg(-1);
+                if (e.key === 'ArrowRight') stepRoomImg(1);
+            });
+        })();
+    </script>
+
 
 @endsection
