@@ -23,25 +23,91 @@
 
         {{-- Konten Headline --}}
         <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
-            <h1 class="font-serif-elegant text-white text-5xl md:text-6xl mb-4">
-                Selamat Datang.Sugeng Rawuh
+
+            {{-- Eyebrow: garis memanjang + label --}}
+            <div class="hero-fade flex items-center gap-3 mb-5" style="animation-delay:.1s">
+                <span class="hero-line"></span>
+                <span class="text-amber-300 text-xs uppercase tracking-[0.35em]">Hotel JUNES</span>
+            </div>
+
+            {{-- Headline: tiap baris naik dari balik masker --}}
+            <h1 class="font-serif-elegant text-white leading-tight mb-6">
+                <span class="hero-mask block text-5xl md:text-7xl">
+                    <span class="hero-rise" style="animation-delay:.3s">Selamat Datang</span>
+                </span>
+                <span class="hero-mask block text-4xl md:text-6xl mt-1">
+                    <span class="hero-rise" style="animation-delay:.65s">
+                        <span class="hero-shimmer italic">Sugeng Rawuh</span>
+                    </span>
+                </span>
             </h1>
-            <p class="text-white/90 max-w-md mb-6 text-sm leading-relaxed">
+
+            <p class="hero-fade text-white/90 max-w-md mb-8 text-sm leading-relaxed" style="animation-delay:1s">
                 Hotel kami hadir sebagai destinasi menginap modern dengan desain elegan,
                 pelayanan hangat, dan pengalaman menginap yang autentik bagi setiap tamu.
             </p>
+
             <a href="#tentang"
-               class="inline-block border border-white text-white text-xs uppercase tracking-widest px-6 py-3 rounded-full hover:bg-white hover:text-slate-900 transition w-fit">
+            class="hero-fade inline-block border border-white text-white text-xs uppercase tracking-widest px-6 py-3 rounded-full hover:bg-white hover:text-slate-900 transition w-fit"
+            style="animation-delay:1.25s">
                 Info Selengkapnya
             </a>
         </div>
 
+        <style>
+            /* Teks naik dari balik masker */
+            .hero-mask { overflow: hidden; padding-bottom: .15em; }
+            .hero-rise {
+                display: inline-block;
+                transform: translateY(110%);
+                opacity: 0;
+                animation: heroRise 1s cubic-bezier(.2, .8, .2, 1) forwards;
+            }
+            @keyframes heroRise { to { transform: translateY(0); opacity: 1; } }
+
+            /* Fade + naik halus untuk elemen lain */
+            .hero-fade {
+                opacity: 0;
+                transform: translateY(16px);
+                animation: heroFade .9s ease forwards;
+            }
+            @keyframes heroFade { to { opacity: 1; transform: none; } }
+
+            /* Garis eyebrow memanjang */
+            .hero-line {
+                display: block;
+                height: 1px;
+                width: 0;
+                background: #fcd34d;
+                animation: heroLine .9s ease .2s forwards;
+            }
+            @keyframes heroLine { to { width: 3.5rem; } }
+
+            /* Kilau emas berjalan di "Sugeng Rawuh" */
+            .hero-shimmer {
+                display: inline-block;
+                padding-right: .12em; /* supaya ujung huruf miring tidak terpotong */
+                background: linear-gradient(90deg, #fde68a, #ffffff, #fbbf24, #ffffff, #fde68a);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                animation: heroShimmer 5s linear 1.6s infinite;
+            }
+            @keyframes heroShimmer { to { background-position: 200% center; } }
+
+            /* Hormati pengguna yang mematikan animasi */
+            @media (prefers-reduced-motion: reduce) {
+                .hero-rise, .hero-fade, .hero-shimmer { animation: none; opacity: 1; transform: none; }
+                .hero-line { animation: none; width: 3.5rem; }
+            }
+        </style>
+
         {{-- ===== SEARCH BAR OVERLAY (mengambang di bawah hero) ===== --}}
-        <div class="absolute bottom-0 left-0 w-full z-20">
+        {{-- <div class="absolute bottom-0 left-0 w-full z-20">
             <form action="{{ route('pesanan.create') }}" method="GET"
                 class="max-w-7xl mx-auto flex flex-col md:flex-row bg-slate-900/95 text-white">
 
-                {{-- Check-in --}}
                 <div class="flex-1 px-6 py-5 border-b md:border-b-0 md:border-r border-white/20">
                     <label class="block text-xs uppercase tracking-wide text-white/60 mb-1">Check-in</label>
                     <input type="date" name="tanggal_pesan" id="search_checkin" required
@@ -49,7 +115,6 @@
                         class="bg-transparent outline-none text-sm w-full placeholder-white/50 text-white cursor-pointer">
                 </div>
 
-                {{-- Check-out --}}
                 <div class="flex-1 px-6 py-5 border-b md:border-b-0 md:border-r border-white/20">
                     <label class="block text-xs uppercase tracking-wide text-white/60 mb-1">Check-out</label>
                     <input type="date" name="tanggal_checkout" id="search_checkout" required
@@ -57,7 +122,6 @@
                         class="bg-transparent outline-none text-sm w-full placeholder-white/50 text-white cursor-pointer">
                 </div>
 
-                {{-- Dewasa --}}
                 <div class="flex-1 px-6 py-5 border-b md:border-b-0 md:border-r border-white/20">
                     <label class="block text-xs uppercase tracking-wide text-white/60 mb-1">Dewasa</label>
                     <select name="dewasa" class="bg-transparent outline-none text-sm w-full text-white cursor-pointer">
@@ -67,7 +131,6 @@
                     </select>
                 </div>
 
-                {{-- Anak --}}
                 <div class="flex-1 px-6 py-5 border-b md:border-b-0 md:border-r border-white/20">
                     <label class="block text-xs uppercase tracking-wide text-white/60 mb-1">Anak</label>
                     <select name="anak" class="bg-transparent outline-none text-sm w-full text-white cursor-pointer">
@@ -82,34 +145,72 @@
                     Cari Kamar
                 </button>
             </form>
-        </div>
+        </div> --}}
     </section>
 
     {{-- ============================================================= --}}
-    {{-- ===== WELCOME SECTION (kolase foto + teks) ===== --}}
+    {{-- ===== TENTANG KAMI & KONTAK (digabung) ===== --}}
     {{-- ============================================================= --}}
     <section id="tentang" class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-        {{-- Kolase foto (mirip referensi: 2 foto bertumpuk) --}}
-        <div class="relative h-[420px]">
+        {{-- Kolase foto --}}
+        <div class="relative h-[480px]">
             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80"
-                 class="absolute top-0 left-0 w-3/5 h-56 object-cover rounded shadow-lg" alt="Kolam renang hotel">
+                 class="absolute top-0 left-0 w-3/5 h-64 object-cover rounded shadow-lg" alt="Kolam renang hotel">
             <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=500&q=80"
-                 class="absolute bottom-0 right-0 w-3/5 h-56 object-cover rounded shadow-lg border-4 border-white" alt="Pemandangan hotel">
+                 class="absolute bottom-0 right-0 w-3/5 h-64 object-cover rounded shadow-lg border-4 border-white" alt="Pemandangan hotel">
+            <div class="absolute bottom-6 left-0 bg-amber-500 text-white rounded-2xl shadow-lg p-5 w-40 text-center">
+                <p class="text-3xl font-serif-elegant">1</p>
+                <p class="text-xs uppercase tracking-widest mt-1">Hari Melayani Tamu</p>
+            </div>
         </div>
 
-        {{-- Teks Welcome --}}
+        {{-- Teks tentang kami + kontak --}}
         <div>
             <p class="text-sky-600 text-xs uppercase tracking-widest font-semibold mb-2">Kenyamanan Kelas Atas</p>
             <h2 class="font-serif-elegant text-3xl md:text-4xl text-slate-800 mb-4">Selamat Datang di JUNES</h2>
             <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                JUNES adalah pilihan tepat bagi pengunjung yang mencari perpaduan
-                antara kenyamanan, keindahan, dan lokasi strategis untuk menjelajahi sekitarnya.
+                JUNES adalah hotel bintang lima yang berlokasi strategis di pusat kota,
+                menawarkan perpaduan kenyamanan, keindahan, dan pelayanan ramah
+                untuk kebutuhan bisnis maupun liburan Anda.
             </p>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+            <p class="text-gray-600 text-sm leading-relaxed mb-8">
                 Kamar-kamar kami tersedia dalam tiga tipe pilihan: Standar, Deluxe, dan Executive,
                 masing-masing dirancang untuk memberikan pengalaman menginap terbaik bagi setiap tamu.
             </p>
+
+            {{-- Info kontak --}}
+            <p class="text-sky-600 text-xs uppercase tracking-widest font-semibold mb-3">Hubungi Kami</p>
+            <div class="space-y-3 mb-8">
+                <div class="flex items-start gap-4 bg-white rounded-lg shadow-sm p-4">
+                    <div class="p-2 bg-sky-50 rounded-lg text-sky-600 shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm text-slate-800">Alamat</p>
+                        <p class="text-sm text-gray-500">Jl. Raya Pajajaran No. 88, Bogor, Jawa Barat, Indonesia</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 bg-white rounded-lg shadow-sm p-4">
+                    <div class="p-2 bg-sky-50 rounded-lg text-sky-600 shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm text-slate-800">Telepon</p>
+                        <p class="text-sm text-gray-500">+34-666-9990023</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 bg-white rounded-lg shadow-sm p-4">
+                    <div class="p-2 bg-sky-50 rounded-lg text-sky-600 shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm text-slate-800">Email</p>
+                        <p class="text-sm text-gray-500">info@junes.co.id</p>
+                    </div>
+                </div>
+            </div>
+
             <a href="#produk"
                class="inline-block bg-amber-500 hover:bg-amber-600 transition text-white text-xs uppercase tracking-widest px-6 py-3 rounded-full">
                 Lihat Kamar
@@ -282,66 +383,6 @@
                 <iframe class="w-full h-full"
                         src="https://www.youtube.com/embed/n6ri-KvuwIo"
                         title="Video Tour JUNES" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    {{-- ============================================================= --}}
-    {{-- ===== SECTION TENTANG KAMI / INFORMASI HOTEL ===== --}}
-    {{-- ============================================================= --}}
-    <section id="tentang-kami-detail" class="py-24 bg-slate-50">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-            {{-- Kolom foto --}}
-            <div class="relative h-[420px]">
-                <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=700&q=80"
-                    class="absolute top-0 left-0 w-4/5 h-4/5 object-cover rounded-2xl shadow-xl" alt="Tampak depan hotel">
-                <div class="absolute bottom-0 right-0 bg-amber-500 text-white rounded-2xl shadow-lg p-6 w-48 text-center">
-                    <p class="text-3xl font-serif-elegant">1</p>
-                    <p class="text-xs uppercase tracking-widest mt-1">Hari Melayani Tamu</p>
-                </div>
-            </div>
-
-            {{-- Kolom informasi --}}
-            <div>
-                <p class="text-sky-600 text-xs uppercase tracking-widest font-semibold mb-2">Hubungi Kami</p>
-                <h2 class="font-serif-elegant text-3xl md:text-4xl text-slate-800 mb-4">Informasi Hotel</h2>
-                <p class="text-gray-600 text-sm leading-relaxed mb-8">
-                    JUNES adalah hotel bintang lima yang berlokasi strategis di pusat kota,
-                    menawarkan kenyamanan menginap dengan pelayanan ramah dan fasilitas lengkap
-                    untuk kebutuhan bisnis maupun liburan Anda.
-                </p>
-
-                {{-- Info kontak dengan ikon, gaya card ringan --}}
-                <div class="space-y-4">
-                    <div class="flex items-start gap-4 bg-white rounded-lg shadow-sm p-4">
-                        <div class="p-2 bg-sky-50 rounded-lg text-sky-600 shrink-0">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-sm text-slate-800">Alamat</p>
-                            <p class="text-sm text-gray-500">Jl. Raya Pajajaran No. 88, Bogor, Jawa Barat, Indonesia</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4 bg-white rounded-lg shadow-sm p-4">
-                        <div class="p-2 bg-sky-50 rounded-lg text-sky-600 shrink-0">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-sm text-slate-800">Telepon</p>
-                            <p class="text-sm text-gray-500">+34-666-9990023</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4 bg-white rounded-lg shadow-sm p-4">
-                        <div class="p-2 bg-sky-50 rounded-lg text-sky-600 shrink-0">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-sm text-slate-800">Email</p>
-                            <p class="text-sm text-gray-500">info@junes.co.id</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

@@ -1,17 +1,15 @@
-{{--
-    File         : detail.blade.php
-    Deskripsi    : Halaman untuk menampilkan detail/rekap satu data pemesanan
-                   yang telah berhasil disimpan ke database (Luxury Theme).
-    Initial State: Data pemesanan sudah tersimpan di database
-    Final State  : Data pemesanan ditampilkan secara rapi dan elegan kepada pengguna
-    Author       : Junior Web Developer
-    Versi/Tanggal: v2.0 / 2026-09-15
---}}
 @extends('layouts.app')
 
 @section('title', 'Detail Pemesanan - JUNES')
 
 @section('content')
+
+@section('content')
+<style>
+    nav, header, footer { display: none !important; }
+</style>
+
+<div class="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
 <div class="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl mx-auto">
         
@@ -137,14 +135,19 @@
             </div>
 
             {{-- Card Footer / Action Buttons --}}
-            <div class="bg-slate-50 px-8 py-5 border-t border-slate-100 flex flex-col sm:flex-row gap-3 justify-between items-center">
-                <a href="{{ route('pesanan.create') }}" 
-                   class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-2.5 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition shadow-md hover:shadow-lg">
+            <div class="bg-slate-50 px-8 py-5 border-t border-slate-100 flex flex-col sm:flex-row gap-3 justify-center sm:justify-between items-center">
+                <a href="{{ route('pesanan.create') }}"
+                class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-2.5 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition shadow-md hover:shadow-lg">
                     <i class="fa-solid fa-plus text-amber-400"></i>
                     Pesan Kamar Lain
                 </a>
-            </div>
 
+                <a href="{{ route('home') }}"
+                class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-2.5 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-house text-amber-400"></i>
+                    Kembali ke Beranda
+                </a>
+            </div>
         </div>
 
         {{-- Helper Note --}}

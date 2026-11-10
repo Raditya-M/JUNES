@@ -146,12 +146,12 @@
                         <span id="ringkasan_durasi" class="text-white">-</span>
                     </div>
                     <div class="flex justify-between">
-                        <span>Sarapan</span>
-                        <span id="ringkasan_breakfast" class="text-white">-</span>
-                    </div>
-                    <div class="flex justify-between">
                         <span>Diskon</span>
                         <span id="ringkasan_diskon" class="text-emerald-400">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Sarapan</span>
+                        <span id="ringkasan_breakfast" class="text-white">-</span>
                     </div>
                 </div>
 

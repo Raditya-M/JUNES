@@ -24,8 +24,7 @@
             </a>
             <div class="hidden md:flex items-center space-x-8 text-sm uppercase tracking-wide">
                 <a href="{{ route('home') }}#tentang" class="hover:text-blue-300 transition">Tentang Kami</a>
-                <a href="{{ route('home') }}#produk" class="hover:text-blue-300 transition">Kamar & Suite</a>
-                <a href="{{ route('home') }}#tentang-kami-detail" class="hover:text-blue-300 transition">Kontak</a>
+                <a href="{{ route('home') }}#produk" class="hover:text-blue-300 transition">Kamar & Harga</a>
                 <a href="{{ route('pesanan.create') }}"
                    class="border border-white/70 px-4 py-2 rounded-full hover:bg-white hover:text-slate-900 transition">
                    Pesan Kamar
