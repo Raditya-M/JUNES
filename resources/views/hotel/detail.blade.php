@@ -3,16 +3,36 @@
 @section('title', 'Detail Pemesanan - JUNES')
 
 @section('content')
-
-@section('content')
 <style>
     nav, header, footer { display: none !important; }
+
+    /* Struk hanya tampil saat dicetak */
+    .struk-print { display: none; }
+
+    @media print {
+        @page { size: 80mm auto; margin: 4mm; }
+        html, body { background: #fff !important; }
+        .screen-only { display: none !important; }
+        .struk-print { display: block !important; }
+    }
+
+    .struk-print {
+        width: 72mm;
+        margin: 0 auto;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 11px;
+        line-height: 1.5;
+        color: #000;
+    }
+    .struk-print .garis { border-top: 1px dashed #000; margin: 6px 0; }
+    .struk-print .baris { display: flex; justify-content: space-between; gap: 8px; }
+    .struk-print .baris span:last-child { text-align: right; }
 </style>
 
-<div class="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-<div class="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+{{-- ================= TAMPILAN LAYAR ================= --}}
+<div class="screen-only min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-2xl mx-auto">
-        
+
         {{-- Header Status --}}
         <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mb-4 shadow-sm">
@@ -28,7 +48,7 @@
 
         {{-- Invoice Card --}}
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
-            
+
             {{-- Card Header --}}
             <div class="bg-slate-900 text-white px-8 py-6 flex flex-wrap justify-between items-center gap-4 border-b border-amber-500/30">
                 <div>
@@ -45,7 +65,7 @@
 
             {{-- Card Body / Table Content --}}
             <div class="p-8 space-y-6">
-                
+
                 {{-- Detail Tamu --}}
                 <div>
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 border-b border-slate-100 pb-2">
@@ -137,13 +157,19 @@
             {{-- Card Footer / Action Buttons --}}
             <div class="bg-slate-50 px-8 py-5 border-t border-slate-100 flex flex-col sm:flex-row gap-3 justify-center sm:justify-between items-center">
                 <a href="{{ route('pesanan.create') }}"
-                class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-2.5 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition shadow-md hover:shadow-lg">
+                   class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-2.5 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition shadow-md hover:shadow-lg">
                     <i class="fa-solid fa-plus text-amber-400"></i>
                     Pesan Kamar Lain
                 </a>
 
+                <button type="button" onclick="window.print()"
+                        class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-2.5 rounded-lg bg-amber-500 text-white font-medium text-sm hover:bg-amber-600 transition shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-print"></i>
+                    Cetak Struk
+                </button>
+
                 <a href="{{ route('home') }}"
-                class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-2.5 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition shadow-md hover:shadow-lg">
+                   class="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-6 py-2.5 rounded-lg bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition shadow-md hover:shadow-lg">
                     <i class="fa-solid fa-house text-amber-400"></i>
                     Kembali ke Beranda
                 </a>
@@ -155,6 +181,54 @@
             Simpan bukti pemesanan ini. Tunjukkan saat melakukan *check-in* di resepsionis.
         </p>
 
+    </div>
+</div>
+
+{{-- ================= STRUK (hanya muncul saat dicetak) ================= --}}
+<div class="struk-print">
+    <div style="text-align:center">
+        <strong style="font-size:15px; letter-spacing:2px">HOTEL JUNES</strong><br>
+        Jl. Raya Pajajaran No. 88<br>
+        Bogor, Jawa Barat<br>
+        info@junes.co.id
+    </div>
+
+    <div class="garis"></div>
+
+    <div style="text-align:center"><strong>STRUK PEMESANAN</strong></div>
+    <div class="baris"><span>No.</span><span>INV-{{ str_pad($pemesanan->id, 5, '0', STR_PAD_LEFT) }}</span></div>
+    <div class="baris"><span>Tanggal</span><span>{{ \Carbon\Carbon::parse($pemesanan->created_at)->format('d/m/Y H:i') }}</span></div>
+
+    <div class="garis"></div>
+
+    <div class="baris"><span>Nama</span><span>{{ $pemesanan->nama_pemesan }}</span></div>
+    <div class="baris"><span>Jenis Kelamin</span><span>{{ $pemesanan->jenis_kelamin }}</span></div>
+    <div class="baris"><span>No. Identitas</span><span>{{ \Illuminate\Support\Str::mask($pemesanan->nomor_identitas, '*', 0, -4) }}</span></div>
+
+    <div class="garis"></div>
+
+    <div class="baris"><span>Tipe Kamar</span><span>{{ $pemesanan->tipe_kamar }}</span></div>
+    <div class="baris"><span>Check-in</span><span>{{ \Carbon\Carbon::parse($pemesanan->tanggal_pesan)->format('d/m/Y') }}</span></div>
+    <div class="baris"><span>Durasi</span><span>{{ $pemesanan->durasi_menginap }} malam</span></div>
+    <div class="baris"><span>Sarapan</span><span>{{ $pemesanan->termasuk_breakfast ? 'Termasuk' : 'Tidak' }}</span></div>
+    @if($pemesanan->discount > 0)
+        <div class="baris"><span>Diskon</span><span>{{ $pemesanan->discount }}%</span></div>
+    @endif
+
+    <div class="garis"></div>
+
+    <div class="baris" style="font-size:13px">
+        <strong>TOTAL</strong>
+        <strong>Rp {{ number_format($pemesanan->total_bayar, 0, ',', '.') }}</strong>
+    </div>
+
+    <div class="garis"></div>
+
+    <div style="text-align:center">
+        Terima kasih atas kepercayaan Anda.<br>
+        Tunjukkan struk ini saat check-in<br>
+        di resepsionis.<br>
+        Sugeng Rawuh!
     </div>
 </div>
 @endsection

@@ -24,13 +24,11 @@
         {{-- Konten Headline --}}
         <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
 
-            {{-- Eyebrow: garis memanjang + label --}}
             <div class="hero-fade flex items-center gap-3 mb-5" style="animation-delay:.1s">
                 <span class="hero-line"></span>
                 <span class="text-amber-300 text-xs uppercase tracking-[0.35em]">Hotel JUNES</span>
             </div>
 
-            {{-- Headline: tiap baris naik dari balik masker --}}
             <h1 class="font-serif-elegant text-white leading-tight mb-6">
                 <span class="hero-mask block text-5xl md:text-7xl">
                     <span class="hero-rise" style="animation-delay:.3s">Selamat Datang</span>

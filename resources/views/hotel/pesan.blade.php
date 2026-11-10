@@ -40,7 +40,9 @@
                         <label class="block text-xs uppercase tracking-wide text-gray-500 font-medium mb-2">Nama Pemesan</label>
                         <input type="text" name="nama_pemesan" id="nama_pemesan" required
                                value="{{ old('nama_pemesan') }}" placeholder="Masukkan nama lengkap"
+                               oninput="cekNama()"
                                class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent">
+                        <p id="errorNama" class="text-red-600 text-xs mt-1 hidden">Nama tidak boleh mengandung angka!</p>
                     </div>
 
                     {{-- JENIS KELAMIN --}}
@@ -88,12 +90,15 @@
                                class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm bg-gray-50 text-gray-500">
                     </div>
 
-                    {{-- TANGGAL PESAN --}}
+                    {{-- TANGGAL PESAN (default hari ini, tidak boleh mundur) --}}
                     <div>
                         <label class="block text-xs uppercase tracking-wide text-gray-500 font-medium mb-2">Tanggal Check-in</label>
                         <input type="date" name="tanggal_pesan" id="tanggal_pesan" required
-                               value="{{ old('tanggal_pesan') }}"
+                               value="{{ old('tanggal_pesan', now()->format('Y-m-d')) }}"
+                               min="{{ now()->format('Y-m-d') }}"
+                               onchange="cekTanggal()"
                                class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent">
+                        <p id="errorTanggal" class="text-red-600 text-xs mt-1 hidden">Tanggal check-in tidak boleh sebelum hari ini!</p>
                     </div>
 
                     {{-- DURASI MENGINAP --}}
@@ -174,6 +179,60 @@
 @section('scripts')
 <script>
     /**
+     * Tanggal hari ini (zona waktu browser) format YYYY-MM-DD.
+     */
+    function hariIni() {
+        const d = new Date();
+        return d.getFullYear() + '-' +
+               String(d.getMonth() + 1).padStart(2, '0') + '-' +
+               String(d.getDate()).padStart(2, '0');
+    }
+
+    /**
+     * Fungsi: aturTanggal
+     * Deskripsi: Set minimum tanggal check-in = hari ini, dan isi default hari ini
+     *            bila kosong atau sudah lewat.
+     */
+    function aturTanggal() {
+        const el = document.getElementById('tanggal_pesan');
+        const today = hariIni();
+        el.min = today;
+        if (!el.value || el.value < today) el.value = today;
+    }
+
+    /**
+     * Fungsi: cekTanggal
+     * Deskripsi: Tanggal check-in tidak boleh sebelum hari ini (otomatis dikembalikan ke hari ini).
+     */
+    function cekTanggal() {
+        const el = document.getElementById('tanggal_pesan');
+        const errorEl = document.getElementById('errorTanggal');
+        const today = hariIni();
+        const valid = !!el.value && el.value >= today;
+        errorEl.classList.toggle('hidden', valid);
+        if (!valid) el.value = today;
+        return valid;
+    }
+
+    /**
+     * Fungsi: cekNama
+     * Deskripsi: Nama tidak boleh mengandung angka. Angka otomatis dihapus dan pesan error ditampilkan sebentar.
+     */
+    let timerErrorNama;
+    function cekNama() {
+        const input = document.getElementById('nama_pemesan');
+        const errorEl = document.getElementById('errorNama');
+
+        if (/[0-9]/.test(input.value)) {
+            input.value = input.value.replace(/[0-9]/g, '');
+            errorEl.classList.remove('hidden');
+            clearTimeout(timerErrorNama);
+            timerErrorNama = setTimeout(() => errorEl.classList.add('hidden'), 2500);
+        }
+        return !/[0-9]/.test(input.value);
+    }
+
+    /**
      * Fungsi: updateHarga
      * Deskripsi: Mengisi field Harga otomatis sesuai tipe kamar yang dipilih.
      */
@@ -190,7 +249,7 @@
      */
     function cekNomorIdentitas() {
         const input = document.getElementById('nomor_identitas');
-        
+
         // Hapus karakter non-angka secara otomatis jika user mengetik huruf/simbol
         input.value = input.value.replace(/[^0-9]/g, '');
 
@@ -252,8 +311,8 @@
         // Isi panel ringkasan biaya di kolom kanan
         document.getElementById('ringkasan_tipe').textContent = tipe + ' (' + formatRupiah(harga) + '/malam)';
         document.getElementById('ringkasan_durasi').textContent = durasi + ' malam';
-        document.getElementById('ringkasan_breakfast').textContent = breakfast 
-            ? '+ ' + formatRupiah(tambahanBreakfast) + ' (' + durasi + ' malam)' 
+        document.getElementById('ringkasan_breakfast').textContent = breakfast
+            ? '+ ' + formatRupiah(tambahanBreakfast) + ' (' + durasi + ' malam)'
             : 'Tidak ada';
         document.getElementById('ringkasan_diskon').textContent = discountPersen > 0
             ? '- ' + formatRupiah(nilaiDiscount) + ' (10%)'
@@ -273,6 +332,18 @@
      * Deskripsi: Validasi gabungan sebelum form disubmit.
      */
     function validasiForm() {
+        const namaInput = document.getElementById('nama_pemesan');
+        if (/[0-9]/.test(namaInput.value)) {
+            document.getElementById('errorNama').classList.remove('hidden');
+            alert('Nama tidak boleh mengandung angka.');
+            return false;
+        }
+
+        if (!cekTanggal()) {
+            alert('Tanggal check-in tidak boleh sebelum hari ini.');
+            return false;
+        }
+
         const identitasValid = cekNomorIdentitas();
         const durasiValid = cekDurasi();
 
@@ -294,8 +365,17 @@
         document.getElementById('ringkasan_durasi').textContent = '-';
         document.getElementById('ringkasan_breakfast').textContent = '-';
         document.getElementById('ringkasan_diskon').textContent = '-';
+        document.getElementById('errorNama').classList.add('hidden');
         document.getElementById('errorIdentitas').classList.add('hidden');
         document.getElementById('errorDurasi').classList.add('hidden');
+        document.getElementById('errorTanggal').classList.add('hidden');
+        // reset bawaan browser berjalan setelah handler ini, jadi atur ulang tanggal sesudahnya
+        setTimeout(aturTanggal, 0);
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        aturTanggal();
+        updateHarga();
+    });
 </script>
 @endsection
